@@ -450,25 +450,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1071477528437514924, guid: 6b7a1c78555fbfd4caf811121bbd88ae,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071477528437514924, guid: 6b7a1c78555fbfd4caf811121bbd88ae,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071477528437514924, guid: 6b7a1c78555fbfd4caf811121bbd88ae,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1071477528437514925, guid: 6b7a1c78555fbfd4caf811121bbd88ae,
         type: 3}
       propertyPath: m_Name
       value: Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210904753305196972, guid: 6b7a1c78555fbfd4caf811121bbd88ae,
+        type: 3}
+      propertyPath: m_Text
+      value: 0, 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b7a1c78555fbfd4caf811121bbd88ae, type: 3}

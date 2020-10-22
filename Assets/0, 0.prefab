@@ -79,7 +79,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5935700593935936705}
-  m_Text: 0, 0
+  m_Text: 2, 0
   m_OffsetZ: 0
   m_CharacterSize: 0.03
   m_LineSpacing: 0
@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b412b4cd82cd7344a262b0d2d594c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 10
 --- !u!114 &3837182059327462227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +262,7 @@ GameObject:
   - component: {fileID: 8164533479733485387}
   - component: {fileID: 8164533479733485386}
   m_Layer: 0
-  m_Name: Quad (1) top
+  m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

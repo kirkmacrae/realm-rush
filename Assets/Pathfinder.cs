@@ -6,6 +6,13 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
+    Vector2Int[] directions =
+    {
+        Vector2Int.up,
+        Vector2Int.right,
+        Vector2Int.down,
+        Vector2Int.left
+    };
 
     [SerializeField] Waypoint start;
     [SerializeField] Waypoint end;    
@@ -15,8 +22,9 @@ public class Pathfinder : MonoBehaviour
     {
         LoadBlocks();
         ColorStartAndEnd();
+        ExploreNeighbours();
     }
-
+   
     private void LoadBlocks()
     {
         var waypoints = FindObjectsOfType<Waypoint>();
@@ -39,4 +47,18 @@ public class Pathfinder : MonoBehaviour
         start.SetTopColour(Color.green);
         end.SetTopColour(Color.red);        
     }
+
+    private void ExploreNeighbours()
+    {     
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int neighbourPosition = start.GetGridPosition() + direction;
+            if (grid.ContainsKey(neighbourPosition))
+            {
+                print("Exploring " + neighbourPosition);
+                grid[neighbourPosition].SetTopColour(Color.blue);
+            }
+        }
+    }
+
 }

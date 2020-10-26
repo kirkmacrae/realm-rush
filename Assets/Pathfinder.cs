@@ -6,6 +6,12 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
+
+    Queue<Waypoint> queue = new Queue<Waypoint>();
+    List<Waypoint> unexplored = new List<Waypoint>();
+    List<Waypoint> nextToExplore = new List<Waypoint>();
+
+    Dictionary<Vector2Int, Waypoint> gridExplored = new Dictionary<Vector2Int, Waypoint>();
     Vector2Int[] directions =
     {
         Vector2Int.up,
@@ -15,16 +21,25 @@ public class Pathfinder : MonoBehaviour
     };
 
     [SerializeField] Waypoint start;
-    [SerializeField] Waypoint end;    
+    [SerializeField] Waypoint end;
+
+    bool exploring = true;
 
     // Start is called before the first frame update
     void Start()
     {
         LoadBlocks();
         ColorStartAndEnd();
-        ExploreNeighbours();
+        Pathfind();
+
+        gridExplored.Add(start.GetGridPosition(),start);
+        unexplored.Add(start);
+
+        ExploreNeighbours(start);
     }
-   
+
+  
+
     private void LoadBlocks()
     {
         var waypoints = FindObjectsOfType<Waypoint>();
@@ -48,16 +63,66 @@ public class Pathfinder : MonoBehaviour
         end.SetTopColour(Color.red);        
     }
 
-    private void ExploreNeighbours()
-    {     
-        foreach (Vector2Int direction in directions)
+    private void Pathfind()
+    {
+        queue.Enqueue(start);
+        while (queue.Count > 0 && exploring)
         {
-            Vector2Int neighbourPosition = start.GetGridPosition() + direction;
-            if (grid.ContainsKey(neighbourPosition))
+            var searchCenter = queue.Dequeue();
+            print(" searching from:" + searchCenter);
+            HalfIfEndFound(searchCenter);
+            //ExploreNeighbours(searchCenter);
+
+        }
+    }
+
+    private void HalfIfEndFound(Waypoint searchCenter)
+    {
+        if(searchCenter == end)
+        {
+            print("searching from end, stopping.");
+            exploring = false;
+        }
+    }
+
+    
+    private void ExploreNeighbours(Waypoint start)
+    {
+        if (!exploring) { return; }
+        Vector2Int neighbourPosition;
+
+
+        while (exploring)        
+        {
+            foreach (Waypoint waypoint in unexplored)
             {
-                print("Exploring " + neighbourPosition);
-                grid[neighbourPosition].SetTopColour(Color.blue);
+               
+                foreach (Vector2Int direction in directions)
+                {
+                    neighbourPosition = waypoint.GetGridPosition() + direction;
+                    if (grid.ContainsKey(neighbourPosition) && !gridExplored.ContainsKey(neighbourPosition))
+                    {
+                        print("Exploring " + neighbourPosition);
+                        grid[neighbourPosition].SetTopColour(Color.blue);
+                        
+
+                        if (grid[neighbourPosition] == end)
+                        {
+                            print("End search ");
+                            exploring = false;
+                            return;
+                        }
+                        gridExplored.Add(grid[neighbourPosition].GetGridPosition(), grid[neighbourPosition]);
+                        nextToExplore.Add(grid[neighbourPosition]);
+                    }                    
+                }
             }
+            unexplored.Clear();
+            foreach(Waypoint thing in nextToExplore)
+            {
+                unexplored.Add(thing);
+            }            
+            nextToExplore.Clear();            
         }
     }
 

@@ -7,9 +7,9 @@ public class Pathfinder : MonoBehaviour
 {
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
 
-    Queue<Waypoint> queue = new Queue<Waypoint>();    
+    Queue<Waypoint> queue = new Queue<Waypoint>();
 
-    Dictionary<Vector2Int, Waypoint> gridExplored = new Dictionary<Vector2Int, Waypoint>();
+    List<Waypoint> path = new List<Waypoint>();
     Vector2Int[] directions =
     {
         Vector2Int.up,
@@ -23,16 +23,14 @@ public class Pathfinder : MonoBehaviour
 
     bool exploring = true;
     Waypoint searchCenter;
-
-    // Start is called before the first frame update
-    void Start()
+    public List<Waypoint> GetPath()
     {
         LoadBlocks();
         ColorStartAndEnd();
-        Pathfind();        
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
     }
-
-  
 
     private void LoadBlocks()
     {
@@ -57,7 +55,7 @@ public class Pathfinder : MonoBehaviour
         end.SetTopColour(Color.red);        
     }
 
-    private void Pathfind()
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(start);
         while (queue.Count > 0 && exploring)
@@ -69,6 +67,8 @@ public class Pathfinder : MonoBehaviour
             searchCenter.isExplored = true;
 
         }
+
+
     }
 
     private void HaltIfEndFound()
@@ -102,9 +102,22 @@ public class Pathfinder : MonoBehaviour
         }
         else
         {        
-            queue.Enqueue(neighbour);
-            neighbour.SetTopColour(Color.blue);
+            queue.Enqueue(neighbour);            
             neighbour.exploredFrom = searchCenter;
         }
+    }
+
+    private void CreatePath()
+    {
+        path.Add(end);
+        Waypoint previous = end.exploredFrom;
+        while(previous !=start)
+        {
+            path.Add(previous);
+            previous.SetTopColour(Color.blue);
+            previous = previous.exploredFrom;
+        }
+        path.Add(start);
+        path.Reverse();
     }
 }

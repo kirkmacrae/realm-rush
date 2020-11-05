@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] int remainingHits = 5;
+    [SerializeField] GameObject deathFX;
     
     // Start is called before the first frame update
     void Start()
@@ -22,5 +24,4 @@ public class EnemyMovement : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
-
 }

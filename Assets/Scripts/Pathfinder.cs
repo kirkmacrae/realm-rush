@@ -9,7 +9,8 @@ public class Pathfinder : MonoBehaviour
 
     Queue<Waypoint> queue = new Queue<Waypoint>();
 
-    List<Waypoint> path = new List<Waypoint>();
+    List<Waypoint> path = new List<Waypoint>();    
+
     Vector2Int[] directions =
     {
         Vector2Int.up,
@@ -25,11 +26,14 @@ public class Pathfinder : MonoBehaviour
     Waypoint searchCenter;
     public List<Waypoint> GetPath()
     {
-        LoadBlocks();
-        ColorStartAndEnd();
-        BreadthFirstSearch();
-        CreatePath();
-        return path;
+        if (path.Count == 0)
+        {
+            LoadBlocks();
+            ColorStartAndEnd();
+            BreadthFirstSearch();
+            CreatePath();            
+        }
+            return path;        
     }
 
     private void LoadBlocks()
@@ -60,8 +64,7 @@ public class Pathfinder : MonoBehaviour
         queue.Enqueue(start);
         while (queue.Count > 0 && exploring)
         {
-            searchCenter = queue.Dequeue();
-            print(" searching from:" + searchCenter);
+            searchCenter = queue.Dequeue();            
             HaltIfEndFound();
             ExploreNeighbours();
             searchCenter.isExplored = true;

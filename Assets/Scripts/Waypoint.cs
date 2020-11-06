@@ -9,8 +9,7 @@ public class Waypoint : MonoBehaviour
     public Color exploredColor;
     public bool isPlaceable;
 
-    [SerializeField] Tower towerPrefab;
-    [SerializeField] GameObject towerParent;
+    [SerializeField] Tower towerPrefab;    
     
     const int gridSize = 10;
 
@@ -43,7 +42,7 @@ public class Waypoint : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && isPlaceable)
         {
-            Instantiate(towerPrefab, gameObject.transform.position, Quaternion.identity, towerParent.transform);
+            Instantiate(towerPrefab, gameObject.transform.position, Quaternion.identity);
             isPlaceable = false;
         }
     }

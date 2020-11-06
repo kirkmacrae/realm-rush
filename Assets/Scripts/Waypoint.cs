@@ -7,10 +7,18 @@ public class Waypoint : MonoBehaviour
     public bool isExplored = false;
     public Waypoint exploredFrom;
     public Color exploredColor;
+    public bool isPlaceable;
 
-    Vector2Int gridPos;
+    [SerializeField] Tower towerPrefab;
+    [SerializeField] GameObject towerParent;
+    
     const int gridSize = 10;
-   
+
+    public void Awake()
+    {
+        isPlaceable = true;
+    }
+
     public int GetGridSize()
     {
         return gridSize;
@@ -29,10 +37,14 @@ public class Waypoint : MonoBehaviour
            Mathf.RoundToInt(transform.position.x / gridSize),
            Mathf.RoundToInt(transform.position.z / gridSize)
            );
-    }
-    public void SetTopColour(Color color)
-    {        
-        MeshRenderer topMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
-        topMeshRenderer.material.color = color;
+    }    
+
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0) && isPlaceable)
+        {
+            Instantiate(towerPrefab, gameObject.transform.position, Quaternion.identity, towerParent.transform);
+            isPlaceable = false;
+        }
     }
 }

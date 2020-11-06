@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37a35ea0d992bc4e82c5f8ca02ae125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remainingHits: 5
+  remainingHits: 50
   deathFX: {fileID: 0}
 --- !u!54 &643363335
 Rigidbody:
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a54c324cc660b74e81a4d56cbab7432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 10
+  hitPoints: 50
 --- !u!65 &116975933
 BoxCollider:
   m_ObjectHideFlags: 0

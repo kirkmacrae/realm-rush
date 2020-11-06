@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 8164533479501012911}
   - component: {fileID: 4234227318299372275}
   - component: {fileID: 3837182059327462227}
+  - component: {fileID: 1108996338201745818}
   m_Layer: 0
   m_Name: 0, 0
   m_TagString: Untagged
@@ -154,6 +155,23 @@ MonoBehaviour:
   isExplored: 0
   exploredFrom: {fileID: 0}
   exploredColor: {r: 0, g: 0.73154783, b: 1, a: 0}
+  isPlaceable: 0
+  towerPrefab: {fileID: 778040764759217631, guid: 811bec56c731b3e48b5ad8a44fd25be8,
+    type: 3}
+  towerParent: {fileID: 0}
+--- !u!65 &1108996338201745818
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8164533479501012910}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 1, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8164533479733485396
 GameObject:
   m_ObjectHideFlags: 0

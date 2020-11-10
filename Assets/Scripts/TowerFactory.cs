@@ -29,7 +29,7 @@ public class TowerFactory : MonoBehaviour
     private void InstantiateNewTower(Waypoint waypoint)
     {
         Tower tempTower = Instantiate(towerPrefab, waypoint.transform.position, Quaternion.identity);
-        tempTower.towerLocation = waypoint;
+        tempTower.towerWaypoint = waypoint;
         towerQueue.Enqueue(tempTower);
         waypoint.isPlaceable = false;        
     }
@@ -37,10 +37,12 @@ public class TowerFactory : MonoBehaviour
     private void MoveExistingTower(Waypoint waypoint)
     {
         Tower movingTower = towerQueue.Dequeue();
-        movingTower.towerLocation.isPlaceable = true;
+        movingTower.towerWaypoint.isPlaceable = true;
+        
 
 
         movingTower.transform.position = waypoint.transform.position;
+        movingTower.towerWaypoint = waypoint;
         waypoint.isPlaceable = false;
         towerQueue.Enqueue(movingTower);        
     }

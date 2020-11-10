@@ -20,7 +20,8 @@ public class EnemyDamage : MonoBehaviour
 
     private void KillEnemy()
     {
-        Instantiate(deathFX, transform.position, Quaternion.identity);              
+        var fx = Instantiate(deathFX, transform.position, Quaternion.identity);
+        fx.Play();
         Destroy(gameObject);        
     }
 }

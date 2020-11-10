@@ -22,6 +22,8 @@ public class EnemyDamage : MonoBehaviour
     {
         var fx = Instantiate(deathFX, transform.position, Quaternion.identity);
         fx.Play();
+
+        Destroy(fx.gameObject, fx.main.duration);
         Destroy(gameObject);        
     }
 }

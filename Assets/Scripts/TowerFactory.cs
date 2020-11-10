@@ -9,6 +9,8 @@ public class TowerFactory : MonoBehaviour
 
     [SerializeField] int maxTowers = 3;
     [SerializeField] Tower towerPrefab;
+    [SerializeField] Transform towerParentTransform;
+
 
     Queue<Tower> towerQueue = new Queue<Tower>();
     
@@ -29,6 +31,7 @@ public class TowerFactory : MonoBehaviour
     private void InstantiateNewTower(Waypoint waypoint)
     {
         Tower tempTower = Instantiate(towerPrefab, waypoint.transform.position, Quaternion.identity);
+        tempTower.transform.parent = towerParentTransform.transform;
         tempTower.towerWaypoint = waypoint;
         towerQueue.Enqueue(tempTower);
         waypoint.isPlaceable = false;        

@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] float secondsBetweenSpawns = 5f;
-    [SerializeField] EnemyMovement enemyPrefab;
-    [SerializeField] Transform enemySpawnLocation;
+    [SerializeField] EnemyMovement enemyPrefab;    
+    [SerializeField] Transform enemyParentTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +17,9 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnEnemies()
     {
         while (true)
-        {            
-            Instantiate(enemyPrefab, enemySpawnLocation.position, Quaternion.identity);
+        {
+            var enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            enemy.transform.parent = enemyParentTransform;
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }
     }

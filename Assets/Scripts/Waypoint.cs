@@ -21,13 +21,6 @@ public class Waypoint : MonoBehaviour
         return gridSize;
     }
 
-    private void Update()
-    {
-        if (isExplored)
-        {
-           // SetTopColour(exploredColor);
-        }
-    }
     public Vector2Int GetGridPosition()
     {
         return new Vector2Int(

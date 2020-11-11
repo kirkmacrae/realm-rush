@@ -70,8 +70,7 @@ public class Pathfinder : MonoBehaviour
     private void HaltIfEndFound()
     {
         if(searchCenter == end)
-        {
-            print("searching from end, stopping.");
+        {            
             exploring = false;
         }
     }

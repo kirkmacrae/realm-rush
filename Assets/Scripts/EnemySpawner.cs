@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float secondsBetweenSpawns = 5f;
     [SerializeField] EnemyMovement enemyPrefab;    
     [SerializeField] Transform enemyParentTransform;
+    [SerializeField] AudioClip spawnedEnemySFX;
 
     [SerializeField] Text scoreText;
     int scoreCount = 0;
@@ -23,6 +24,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
+            GetComponent<AudioSource>().PlayOneShot(spawnedEnemySFX);
             var enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             enemy.transform.parent = enemyParentTransform;
 

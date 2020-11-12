@@ -8,7 +8,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] ParticleSystem deathFX;
     [SerializeField] float movementPeriod = 1f;
     [SerializeField] int baseDamage = 10; //damage dealt to base
-    
+    [SerializeField] AudioClip damageBaseSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,8 @@ public class EnemyMovement : MonoBehaviour
 
         BaseDamage Base = FindObjectOfType<BaseDamage>();
         Base.DamageBase(baseDamage);
+        GetComponent<AudioSource>().PlayOneShot(damageBaseSFX);        
+
         Destroy(gameObject);        
     }
 }

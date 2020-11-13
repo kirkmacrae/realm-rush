@@ -25,7 +25,7 @@ public class EnemyDamage : MonoBehaviour
     {
         var fx = Instantiate(deathFX, transform.position, Quaternion.identity);
         fx.Play();
-        GetComponent<AudioSource>().PlayOneShot(enemyDeathSFX);
+        AudioSource.PlayClipAtPoint(enemyDeathSFX, Camera.main.transform.position);        
         Destroy(fx.gameObject, fx.main.duration);
         Destroy(gameObject);        
     }
